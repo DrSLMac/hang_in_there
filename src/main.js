@@ -1,5 +1,8 @@
 // query selector variables go here 👇
-
+const mainPoster = document.querySelector(".main-poster")
+const posterImage = document.querySelector(".poster-img")
+const posterTitle = document.querySelector(".poster-title")
+const posterQuote = document.querySelector(".poster-quote")
 // we've provided you with some data to work with 👇
 // tip: you can tuck this data out of view with the dropdown found near the line number where the variable is declared 
 var images = [
@@ -103,7 +106,7 @@ var images = [
   var currentPoster;
   
   // event listeners go here 👇
-  
+  window.addEventListener("load", createRandomPoster)
   // functions and event handlers go here 👇
   // (we've provided two to get you started)!
   function getRandomIndex(array) {
@@ -116,4 +119,28 @@ var images = [
       imageURL: imageURL, 
       title: title, 
       quote: quote}
+  }
+
+  function createRandomPoster() {
+    var randomImage = images[getRandomIndex(images)]
+    var randomTitle = titles[getRandomIndex(titles)]
+    var randomQuote = quotes[getRandomIndex(quotes)]
+    var newPoster = createPoster(randomImage,randomTitle,randomQuote)
+    console.log(newPoster)
+
+    posterImage.src = newPoster.imageURL
+    posterTitle.innerText = newPoster.title
+    posterQuote.innerText = newPoster.quote
+    console.log("posterTitle: ", posterTitle)
+    console.log("posterQuote: ", posterQuote)
+  }
+
+  // window.onclick = event => {
+  //   console.log("window.onclick", event.target)
+  // }
+
+mainPoster.addEventListener("dblclick", findElement)
+  function findElement(event) {
+    let text=event.target
+    console.log(text.closest("article"))
   }
