@@ -1,8 +1,17 @@
 // query selector variables go here 👇
-const mainPoster = document.querySelector(".main-poster")
+const mainPosterView = document.querySelector(".main-poster")
 const posterImage = document.querySelector(".poster-img")
 const posterTitle = document.querySelector(".poster-title")
 const posterQuote = document.querySelector(".poster-quote")
+const posterFormView = document.querySelector(".poster-form")
+const savedPostersView = document.querySelector(".saved-posters")
+
+// query selector for buttons
+const anotherRandomPoster = document.querySelector(".show-random")
+const showSavedPostersButton = document.querySelector(".show-saved")
+const showFormButton = document.querySelector(".show-form")
+const backToMainButton = document.querySelector(".back-to-main")
+const showMainButton = document.querySelector(".show-main")
 // we've provided you with some data to work with 👇
 // tip: you can tuck this data out of view with the dropdown found near the line number where the variable is declared 
 var images = [
@@ -107,8 +116,21 @@ var images = [
   
   // event listeners go here 👇
   window.addEventListener("load", createRandomPoster)
+  anotherRandomPoster.addEventListener("click", createRandomPoster)
+  showSavedPostersButton.addEventListener("click", showSavedPosters)
+  showFormButton.addEventListener("click", showForm)
+  backToMainButton.addEventListener("click", backToMainView)
+  showMainButton.addEventListener("click", backToMainView)
   // functions and event handlers go here 👇
   // (we've provided two to get you started)!
+  function show(element) {
+    element.classList.remove("hidden")
+  }
+
+  function hide(element) {
+    element.classList.add("hidden")
+  }
+
   function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
   }
@@ -135,9 +157,32 @@ var images = [
     console.log("posterQuote: ", posterQuote)
   }
 
-  // window.onclick = event => {
-  //   console.log("window.onclick", event.target)
-  // }
+function backToMainView() {
+  show(mainPosterView)
+  hide(savedPostersView)
+  hide(posterFormView)
+  console.log("nevermind button")
+}
+
+function showSavedPosters() {
+  show(savedPostersView)
+  hide(mainPosterView)
+} 
+
+function showForm() {
+  show(posterFormView)
+  hide(mainPosterView)
+}
+
+
+
+
+
+
+
+
+
+
 
 mainPoster.addEventListener("dblclick", findElement)
   function findElement(event) {
